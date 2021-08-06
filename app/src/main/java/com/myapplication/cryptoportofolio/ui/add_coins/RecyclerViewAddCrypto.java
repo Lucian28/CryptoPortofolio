@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.myapplication.cryptoportofolio.R;
 import com.myapplication.cryptoportofolio.models.CoinDetailed;
-import com.myapplication.cryptoportofolio.ui.prices.HomeFragment;
+import com.myapplication.cryptoportofolio.ui.prices.PricesFragment;
 import com.squareup.picasso.Picasso;
 
 public class RecyclerViewAddCrypto extends  RecyclerView.Adapter<RecyclerViewAddCrypto.ViewHolder>{
@@ -57,10 +57,10 @@ public class RecyclerViewAddCrypto extends  RecyclerView.Adapter<RecyclerViewAdd
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    int itemPosition = SlideshowFragment.recyclerView.getChildLayoutPosition(v);
-                    String item = HomeFragment.listaPentruAdaugare[itemPosition].getName();
-                    SlideshowFragment.selectCrypto.setText(item);
-                    SlideshowFragment.d.hide();
+                    int itemPosition = AddCoinsFragment.recyclerView.getChildLayoutPosition(v);
+                    String item = PricesFragment.listaPentruAdaugare[itemPosition].getName();
+                    AddCoinsFragment.selectCrypto.setText(item);
+                    AddCoinsFragment.d.hide();
                 }
             });
         }

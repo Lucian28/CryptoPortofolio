@@ -4,12 +4,12 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-public class HomeViewModel extends ViewModel {
+public class PricesViewModel extends ViewModel {
 
     private MutableLiveData<String> mText;
     private MutableLiveData<String> mEthereum;
 
-    public HomeViewModel() {
+    public PricesViewModel() {
         mText = new MutableLiveData<>();
         mEthereum = new MutableLiveData<>();
         mText.setValue("This is home fragment");

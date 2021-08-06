@@ -21,6 +21,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.myapplication.cryptoportofolio.R;
+import com.myapplication.cryptoportofolio.Welcome;
 import com.myapplication.cryptoportofolio.models.Coin;
 import com.myapplication.cryptoportofolio.models.CoinDetailed;
 
@@ -37,16 +38,16 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 
-public class HomeFragment extends Fragment {
+public class PricesFragment extends Fragment {
 
-    private HomeViewModel homeViewModel;
+    private PricesViewModel pricesViewModel;
     RecyclerView deviceList;
     CoinDetailed[] lista = new CoinDetailed[100];
     public static CoinDetailed[] listaPentruAdaugare ;
     MutableLiveData<Integer> verif = new MutableLiveData<>();
     RecyclerViewCrypto adapter;
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        homeViewModel = new ViewModelProvider(this).get(HomeViewModel.class);
+        pricesViewModel = new ViewModelProvider(this).get(PricesViewModel.class);
         View root = inflater.inflate(R.layout.fragment_home, container, false);
 
         CoinDetailed coinDetailed = new CoinDetailed("wait","wait","wait");

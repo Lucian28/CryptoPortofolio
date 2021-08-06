@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".ui.settings.SettingsFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:id="@+id/language"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintTop_toTopOf="parent"
+            >
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/chooseCurrency"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Select currency"
+                android:textAllCaps="false"
+                android:padding="25dp"
+                android:drawableRight="@drawable/ic_baseline_arrow_drop_down_24"
+                android:textSize="18sp"
+                android:layout_margin="20dp"
+                app:layout_constraintTop_toBottomOf="@+id/prezentare"
+                />
+
+        </LinearLayout>
+
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</FrameLayout>

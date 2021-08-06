@@ -38,15 +38,23 @@ import okhttp3.Response;
 public class Welcome extends  AppCompatActivity{
     public static final String monedeUser="monedeUser.txt";
     public static final String portofolioUser="portofolioUser02.txt";
+    public static final String tipFiat="monedaFiat.txt";
+    public static String monedaAleasa;
 
     private Handler mHandler = new Handler();
     public static  LinkedList<Fiat> listaFiat;
     ArrayList<String> listaBruta = new ArrayList<>();
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.welcome);
         listaFiat = new LinkedList<>();
          addImportantFiat();
+        try {
+            checkFiat();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         if(!fileExist(monedeUser))
             getAvaiblableCurrencies();
         else {
@@ -130,7 +138,7 @@ public class Welcome extends  AppCompatActivity{
         return file.exists();
     }
 
-    public void WriteFile(String filename, String text) throws IOException {
+    public  void WriteFile(String filename, String text) throws IOException {
         FileOutputStream fos = openFileOutput(filename, MODE_PRIVATE);
         fos.write(text.getBytes());
         fos.close();
@@ -176,5 +184,22 @@ public class Welcome extends  AppCompatActivity{
         Fiat ron = new Fiat("RON","Romanian Leu");
         Fiat GBP = new Fiat ("GBP", "British Pound Sterling");
         listaFiat.add(ron);listaFiat.add(usd);listaFiat.add(euro);listaFiat.add(GBP);
+    }
+
+    private void checkFiat() throws IOException {
+        if(fileExist(Welcome.tipFiat))
+            {
+                String moneda = ReadFile(Welcome.tipFiat);
+                monedaAleasa = moneda;
+            }
+           else
+               monedaAleasa="usd";
+    }
+
+    public String ReadFile(String filename) throws IOException {
+        File file = new File(getFilesDir(), filename);
+        BufferedReader br = new BufferedReader(new FileReader(file));
+        return br.readLine();
+
     }
 }

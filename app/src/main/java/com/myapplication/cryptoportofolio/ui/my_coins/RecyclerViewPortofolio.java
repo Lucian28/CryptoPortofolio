@@ -1,5 +1,6 @@
 package com.myapplication.cryptoportofolio.ui.my_coins;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,6 +21,7 @@ import static com.myapplication.cryptoportofolio.ui.prices.RecyclerViewCrypto.da
 
 public class RecyclerViewPortofolio extends  RecyclerView.Adapter<RecyclerViewPortofolio.ViewHolder> {
     private final LinkedList<CoinPortofolio> data;
+    Double total = 0.0;
 
     public RecyclerViewPortofolio(LinkedList<CoinPortofolio> data){
         this.data = data;
@@ -37,7 +39,6 @@ public class RecyclerViewPortofolio extends  RecyclerView.Adapter<RecyclerViewPo
         String name = data.get(position).getCrypto();
         String imageURL="wait";
         String pret="0";
-        String symbol;
         for(int i=0;i<dataCrypto.length;i++)
             if(dataCrypto[i].getName().equals(name)){
               imageURL = dataCrypto[i].getImageURL();
@@ -51,10 +52,21 @@ public class RecyclerViewPortofolio extends  RecyclerView.Adapter<RecyclerViewPo
         Double pretMoneda = Double.valueOf(pret);
         Double cantitate = Double.valueOf(amount);
         Double valoareMonedeDetinute = pretMoneda*cantitate;
+        total += valoareMonedeDetinute;
+        Log.e(total.toString(),"= Total");
+        String val = String.valueOf(valoareMonedeDetinute);
+        if (val.length()>7)
+            val = val.substring(0,6);
 
         holder.cryptoName.setText(name);
-        holder.cryptoPrice.setText("$"+valoareMonedeDetinute);
+        holder.cryptoPrice.setText("$"+val);
         holder.cryptoAmount.setText(amount);
+
+        if(position==data.size()-1) {
+            holder.cryptoName.setText("Total");
+            holder.cryptoPrice.setText("$"+total.toString());
+            holder.cryptoAmount.setText("");
+        }
     }
 
     @Override
@@ -75,4 +87,6 @@ public class RecyclerViewPortofolio extends  RecyclerView.Adapter<RecyclerViewPo
              cryptoAmount = itemView.findViewById(R.id.cryptoAmmount);
         }
     }
+
+
 }

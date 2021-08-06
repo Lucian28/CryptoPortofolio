@@ -22,7 +22,8 @@ import com.myapplication.cryptoportofolio.R;
 import com.myapplication.cryptoportofolio.Welcome;
 import com.myapplication.cryptoportofolio.models.CoinPortofolio;
 import com.myapplication.cryptoportofolio.models.Fiat;
-import com.myapplication.cryptoportofolio.ui.prices.HomeFragment;
+import com.myapplication.cryptoportofolio.ui.prices.PricesFragment;
+import com.myapplication.cryptoportofolio.ui.settings.RecyclerViewFiat;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -33,7 +34,8 @@ import java.util.LinkedList;
 
 import static android.content.Context.MODE_PRIVATE;
 
-public class SlideshowFragment extends Fragment {
+public class AddCoinsFragment extends Fragment {
+
 
     private SearchView searchView;
     public static Dialog d;
@@ -42,15 +44,16 @@ public class SlideshowFragment extends Fragment {
     public static Button selectCrypto;
     public static Button selectFIAT;
     private EditText enterAmount;
-    private SlideshowViewModel slideshowViewModel;
+    private AddCoinsViewModel addCoinsViewModel;
     public static  RecyclerView recyclerView;
     public static RecyclerView recyclerViewFiat;
     RecyclerViewAddCrypto adapter;
     RecyclerViewFiat adapterFiat;
     public static  LinkedList<Fiat> dataSearch = new LinkedList<>();
     public static  LinkedList<Fiat> data=new LinkedList<>();
+
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        slideshowViewModel = new ViewModelProvider(this).get(SlideshowViewModel.class);
+        addCoinsViewModel = new ViewModelProvider(this).get(AddCoinsViewModel.class);
         View v = inflater.inflate(R.layout.fragment_slideshow, container, false);
         selectCrypto = v.findViewById(R.id.chooseCrypto);
         selectFIAT = v.findViewById(R.id.chooseCurrency);
@@ -67,7 +70,7 @@ public class SlideshowFragment extends Fragment {
                 d.setContentView(R.layout.dialog_select_crypto);
                 recyclerView = (RecyclerView) d.findViewById(R.id.reciclerViewAddCrypto);
                 recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-                adapter = new RecyclerViewAddCrypto(HomeFragment.listaPentruAdaugare);
+                adapter = new RecyclerViewAddCrypto(PricesFragment.listaPentruAdaugare);
                 recyclerView.setAdapter(adapter);
                 d.show();
             }
@@ -144,6 +147,7 @@ public class SlideshowFragment extends Fragment {
                         Log.e("Content:",content);
                         try {
                             WriteFile(Welcome.portofolioUser,content);
+                            showSuccesDialog(crypto,amount);
                         } catch (IOException e) {
                             e.printStackTrace();
                         }

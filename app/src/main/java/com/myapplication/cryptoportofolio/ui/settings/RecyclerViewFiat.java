@@ -1,4 +1,4 @@
-package com.myapplication.cryptoportofolio.ui.add_coins;
+package com.myapplication.cryptoportofolio.ui.settings;
 
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -13,10 +13,15 @@ import com.myapplication.cryptoportofolio.R;
 import com.myapplication.cryptoportofolio.Welcome;
 import com.myapplication.cryptoportofolio.models.Fiat;
 
+
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.LinkedList;
 import java.util.Locale;
 
-import static com.myapplication.cryptoportofolio.ui.add_coins.SlideshowFragment.dataSearch;
+import static android.app.PendingIntent.getActivity;
+import static android.content.Context.MODE_PRIVATE;
+import static com.myapplication.cryptoportofolio.ui.settings.SettingsFragment.dataSearch;
 
 public class RecyclerViewFiat extends  RecyclerView.Adapter<RecyclerViewFiat.ViewHolder>{
 
@@ -74,14 +79,17 @@ public class RecyclerViewFiat extends  RecyclerView.Adapter<RecyclerViewFiat.Vie
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    int itemPosition = SlideshowFragment.recyclerViewFiat.getChildLayoutPosition(v);
+                    int itemPosition = SettingsFragment.recyclerViewFiat.getChildLayoutPosition(v);
                     String item = Welcome.listaFiat.get(itemPosition).getCod();
-                    SlideshowFragment.selectFIAT.setText(item);
-                    SlideshowFragment.dialog.hide();
+                    SettingsFragment.selectFIAT.setText(item);
+                    SettingsFragment.dialog.hide();
+                  //  SettingsFragment.monedaAleasa.setValue(item);
                 }
             });
         }
     }
+
+
 }
 
 
