@@ -1,17 +1,13 @@
-package com.myapplication.cryptoportofolio.ui.home;
+package com.myapplication.cryptoportofolio.ui.prices;
 
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.util.JsonReader;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Adapter;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.Observer;
@@ -19,8 +15,6 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -38,8 +32,6 @@ import java.io.IOException;
 import java.util.LinkedList;
 import java.util.Timer;
 import java.util.TimerTask;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -49,8 +41,8 @@ public class HomeFragment extends Fragment {
 
     private HomeViewModel homeViewModel;
     RecyclerView deviceList;
-    CoinDetailed[] lista=new CoinDetailed[100];
-
+    CoinDetailed[] lista = new CoinDetailed[100];
+    public static CoinDetailed[] listaPentruAdaugare ;
     MutableLiveData<Integer> verif = new MutableLiveData<>();
     RecyclerViewCrypto adapter;
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -65,8 +57,7 @@ public class HomeFragment extends Fragment {
         lista[i]=coinDetailed;
         adapter = new RecyclerViewCrypto(lista);
         deviceList.setAdapter(adapter);
-
-        timer();
+         timer();
          timer2();
         setDetailedCoins();
         getDetailedCoins();
@@ -76,8 +67,8 @@ public class HomeFragment extends Fragment {
             public void onChanged(Integer changedValue) {
                 if(verif.getValue()>0)
                    adapter.notifyDataSetChanged();
-
-              //  Log.e("VERIF = ",verif.getValue().toString());
+                if(verif.getValue()==99)
+                    listaPentruAdaugare=lista;
             }
         });
 
@@ -260,7 +251,7 @@ public class HomeFragment extends Fragment {
                setDetailedCoins();
                 Log.e("SET A INCEPUT","SET");
             }
-        }, 0, 5000);
+        }, 0, 60000);
     }
     private void timer2(){
         new Timer().scheduleAtFixedRate(new TimerTask() {
@@ -269,6 +260,6 @@ public class HomeFragment extends Fragment {
 
                getDetailedCoins();
             }
-        }, 0, 5000);
+        }, 0, 60000);
     }
 }

@@ -1,4 +1,4 @@
-package com.myapplication.cryptoportofolio.ui.gallery;
+package com.myapplication.cryptoportofolio.ui.my_coins;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;

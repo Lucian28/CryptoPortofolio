@@ -1,7 +1,5 @@
-package com.myapplication.cryptoportofolio.ui.home;
+package com.myapplication.cryptoportofolio.ui.prices;
 
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,15 +13,11 @@ import com.myapplication.cryptoportofolio.R;
 import com.myapplication.cryptoportofolio.models.CoinDetailed;
 import com.squareup.picasso.Picasso;
 
-import java.io.IOException;
-import java.net.MalformedURLException;
-import java.net.URL;
-
 public class RecyclerViewCrypto extends RecyclerView.Adapter<RecyclerViewCrypto.ViewHolder>{
 
-    private CoinDetailed[]data;
-    public RecyclerViewCrypto(CoinDetailed[]data){
-        this.data = data;
+   public static CoinDetailed[] dataCrypto;
+    public RecyclerViewCrypto(CoinDetailed[] dataCrypto){
+        this.dataCrypto = dataCrypto;
 
     }
     @NonNull
@@ -37,9 +31,9 @@ public class RecyclerViewCrypto extends RecyclerView.Adapter<RecyclerViewCrypto.
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerViewCrypto.ViewHolder holder, int position) {
-        String name = data[position].getName();
-        String imageURL = data[position].getImageURL();
-        String pret = data[position].getPrice();
+        String name = dataCrypto[position].getName();
+        String imageURL = dataCrypto[position].getImageURL();
+        String pret = dataCrypto[position].getPrice();
 
         if(!imageURL.equals("wait"))
         Picasso.get().load(imageURL).into(holder.cryptoImage);
@@ -50,7 +44,7 @@ public class RecyclerViewCrypto extends RecyclerView.Adapter<RecyclerViewCrypto.
 
     @Override
     public int getItemCount() {
-        return data.length;
+        return dataCrypto.length;
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder{

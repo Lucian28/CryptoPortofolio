@@ -1,17 +1,8 @@
-package com.myapplication.cryptoportofolio.ui.home;
-
-import android.os.AsyncTask;
-import android.util.Log;
+package com.myapplication.cryptoportofolio.ui.prices;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
-
-import java.io.IOException;
-
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.Response;
 
 public class HomeViewModel extends ViewModel {
 

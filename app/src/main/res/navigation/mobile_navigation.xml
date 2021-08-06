@@ -7,19 +7,19 @@
 
     <fragment
         android:id="@+id/nav_home"
-        android:name="com.myapplication.cryptoportofolio.ui.home.HomeFragment"
-        android:label="@string/menu_home"
+        android:name="com.myapplication.cryptoportofolio.ui.prices.HomeFragment"
+        android:label="Prices"
         tools:layout="@layout/fragment_home" />
 
     <fragment
         android:id="@+id/nav_gallery"
-        android:name="com.myapplication.cryptoportofolio.ui.gallery.GalleryFragment"
-        android:label="@string/menu_gallery"
+        android:name="com.myapplication.cryptoportofolio.ui.my_coins.GalleryFragment"
+        android:label="My Coins"
         tools:layout="@layout/fragment_gallery" />
 
     <fragment
         android:id="@+id/nav_slideshow"
-        android:name="com.myapplication.cryptoportofolio.ui.slideshow.SlideshowFragment"
-        android:label="@string/menu_slideshow"
+        android:name="com.myapplication.cryptoportofolio.ui.add_coins.SlideshowFragment"
+        android:label="Add coins"
         tools:layout="@layout/fragment_slideshow" />
 </navigation>
